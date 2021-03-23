@@ -210,7 +210,6 @@
                 <div class="error-message"></div>
                 <div class="sent-message"></div>
               </div>
-              <button type="reset" value="Reset">Reset</button>
               <button type="submit" value="Register" style="margin-left:10px;">Submit</button>
 
             </form>

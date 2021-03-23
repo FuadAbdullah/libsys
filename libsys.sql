@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Feb 28, 2021 at 07:24 AM
+-- Generation Time: Mar 21, 2021 at 01:13 PM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.12
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `libsys`
 --
-CREATE DATABASE IF NOT EXISTS `libsys` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `libsys`;
 
 -- --------------------------------------------------------
 
@@ -75,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `book_author_t` (
   `bk_id` int(6) NOT NULL,
   PRIMARY KEY (`bk_author_id`,`bk_id`),
   KEY `bk_id` (`bk_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `book_author_t`
@@ -89,8 +87,6 @@ INSERT INTO `book_author_t` (`bk_author_id`, `bk_author_firstname`, `bk_author_l
 (9, 'J.K.', 'Rowling', 8),
 (10, 'J.K.', 'Rowling', 9),
 (11, 'J.K.', 'Rowling', 10),
-(13, 'Benjamin', 'Graham', 12),
-(14, 'Jason', 'Zweig', 12),
 (15, 'Andy', 'Rathbone', 13),
 (16, 'John', 'Arundel', 16),
 (17, 'Justin', 'Domingus', 16),
@@ -121,7 +117,9 @@ INSERT INTO `book_author_t` (`bk_author_id`, `bk_author_firstname`, `bk_author_l
 (66, 'J.K.', 'Rowling', 4),
 (106, 'Robin', 'Sharma', 2),
 (111, 'Kathleen', 'Brooks', 1),
-(112, 'Brian', 'Dolan', 1);
+(112, 'Brian', 'Dolan', 1),
+(119, 'Benjamin', 'Graham', 12),
+(120, 'Jason', 'Zweig', 12);
 
 -- --------------------------------------------------------
 
@@ -142,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `book_t` (
   `bk_publisher` varchar(40) NOT NULL,
   `bk_publish_date` date NOT NULL,
   PRIMARY KEY (`bk_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `book_t`
@@ -203,21 +201,26 @@ CREATE TABLE IF NOT EXISTS `borrowing_t` (
   PRIMARY KEY (`br_id`,`cl_id`,`bk_id`),
   KEY `bk_id` (`bk_id`),
   KEY `cl_id` (`cl_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `borrowing_t`
 --
 
 INSERT INTO `borrowing_t` (`br_id`, `cl_id`, `bk_id`, `br_date`, `br_due_date`, `br_returning_date`, `br_feedback`, `br_fine`) VALUES
-(1, 27, 13, '2020-10-13', '2020-10-20', '2020-10-18', 'Taught me in further detail about Windows 10', NULL),
-(2, 27, 16, '2020-10-13', '2020-10-18', '2020-10-17', 'A good book.', NULL),
-(3, 34, 28, '2021-02-01', '2021-02-08', '2021-02-09', NULL, '0.20'),
-(4, 38, 1, '2021-01-20', '2021-01-27', '2021-01-25', 'yes, I can do Forex now!', NULL),
-(5, 33, 2, '2020-12-05', '2020-12-08', '2020-12-10', NULL, '0.40'),
-(6, 33, 6, '2021-02-14', '2021-02-28', NULL, NULL, NULL),
-(7, 33, 11, '2020-12-05', '2020-12-19', NULL, NULL, NULL),
-(8, 32, 6, '2021-01-02', '2021-01-16', '2021-01-19', 'Returned late because it was too good', '0.60');
+(1, 25, 12, '2021-03-08', '2021-03-11', '2021-03-08', 'No feedback provided.', '0.60'),
+(2, 27, 13, '2020-10-13', '2020-10-20', '2021-03-08', 'No feedback provided.', '0.60'),
+(3, 27, 16, '2020-10-13', '2020-10-18', '2020-10-17', 'A good book.', NULL),
+(4, 34, 28, '2021-02-01', '2021-02-08', '2021-02-09', 'No feedback provided.', '0.20'),
+(5, 38, 1, '2021-01-20', '2021-01-27', '2021-01-25', 'yes, I can do Forex now!', NULL),
+(6, 33, 2, '2020-12-05', '2020-12-08', '2020-12-10', 'No feedback provided.', '0.40'),
+(7, 33, 6, '2021-02-14', '2021-02-28', '2021-03-08', 'No feedback provided.', '1.60'),
+(8, 33, 11, '2020-12-05', '2020-12-19', NULL, NULL, NULL),
+(9, 32, 6, '2021-01-02', '2021-01-16', '2021-01-19', 'Returned late because it was too good', '0.60'),
+(11, 40, 3, '2021-03-08', '2021-03-15', NULL, NULL, '0.00'),
+(12, 34, 24, '2021-03-08', '2021-03-13', NULL, NULL, '0.00'),
+(13, 1, 13, '2021-03-18', '2021-03-24', '2021-03-19', 'A great book! Easy to read!', '1.00'),
+(14, 33, 15, '2021-03-20', '2021-03-29', NULL, NULL, '0.00');
 
 -- --------------------------------------------------------
 
